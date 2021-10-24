@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import csv, random, sys, turtle
 
+#setup
 file = open('word_list.csv','r')
 reader = csv.reader(file)
 word_list = []
@@ -147,29 +148,30 @@ def check():
         message_text.set('Game over. The word is '+word)
         over()
 
-#tkinter stuff
-tk = Tk()
-tk.title('Hangman')
+if __name__ == '__main__':
 
-canvas = Canvas(master=tk,width=500,height=500)
-canvas.grid(row=1,column=1,columnspan=2)
-p = turtle.RawTurtle(canvas)
+    tk = Tk()
+    tk.title('Hangman')
 
-word_guessed_text = StringVar()
-l = Label(tk, textvariable=word_guessed_text,font=('Consolas',15))
-l.grid(row=2, column=1, columnspan=2)
+    canvas = Canvas(master=tk,width=500,height=500)
+    canvas.grid(row=1,column=1,columnspan=2)
+    p = turtle.RawTurtle(canvas)
 
-message_text = StringVar()
-Label(tk, textvariable=message_text,font=('Consolas',15)).grid(row=3, column=1, columnspan=2)
+    word_guessed_text = StringVar()
+    l = Label(tk, textvariable=word_guessed_text,font=('Consolas',15))
+    l.grid(row=2, column=1, columnspan=2)
 
-entry = Entry(tk,width=3,font=('Consolas',15))
-entry.grid(row=4,column=1,sticky=E)
+    message_text = StringVar()
+    Label(tk, textvariable=message_text,font=('Consolas',15)).grid(row=3, column=1, columnspan=2)
 
-Button(tk,text='Enter',command=check).grid(row=4,column=2,sticky=W)
+    entry = Entry(tk,width=3,font=('Consolas',15))
+    entry.grid(row=4,column=1,sticky=E)
 
-tk.bind('<Return>',keyPress)
+    Button(tk,text='Enter',command=check).grid(row=4,column=2,sticky=W)
 
-reset()
+    tk.bind('<Return>',keyPress)
 
-tk.mainloop()
+    reset()
+
+    tk.mainloop()
 
